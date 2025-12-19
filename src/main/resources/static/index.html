@@ -1,0 +1,147 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>MyHealth</title>
+  <link rel="stylesheet" href="/styles.css"/>
+</head>
+<body>
+  <header class="top">
+    <div class="container">
+      <div class="brand">
+        <div class="logo">MH</div>
+        <div>
+          <div class="title">MyHealth</div>
+          <div class="subtitle">Simple demo (HTML + CSS + JS)</div>
+        </div>
+      </div>
+
+      <div class="right">
+        <span id="userBadge" class="badge hidden"></span>
+        <button id="logoutBtn" class="btn ghost hidden">Logout</button>
+      </div>
+    </div>
+  </header>
+
+  <main class="container">
+    <section id="authCard" class="card">
+      <div class="cardHeader">
+        <h2 id="authTitle">Login</h2>
+        <div class="tabs">
+          <button id="tabLogin" class="tab active">Login</button>
+          <button id="tabRegister" class="tab">Register</button>
+        </div>
+      </div>
+
+      <div class="grid">
+        <label class="field">
+          <span>Email</span>
+          <input id="email" type="email" placeholder="you@example.com" />
+        </label>
+
+        <label class="field">
+          <span>Password</span>
+          <input id="password" type="password" placeholder="min 6 chars" />
+        </label>
+
+        <div id="registerFields" class="hidden">
+          <div class="row">
+            <label class="field">
+              <span>Full name</span>
+              <input id="fullName" type="text" placeholder="Alexandra Arykova" />
+            </label>
+
+            <label class="field">
+              <span>Age</span>
+              <input id="age" type="number" min="0" max="130" placeholder="20" />
+            </label>
+
+            <label class="field">
+              <span>Gender</span>
+              <select id="gender">
+                <option value="FEMALE">Female</option>
+                <option value="MALE">Male</option>
+                <option value="OTHER">Other</option>
+              </select>
+            </label>
+          </div>
+        </div>
+
+        <div class="row">
+          <button id="submitAuth" class="btn">Continue</button>
+          <span id="authMsg" class="msg"></span>
+        </div>
+      </div>
+
+      <p class="hint">
+        Backend API: <code>/api/auth</code>, <code>/api/health-data</code>, <code>/api/reports</code>, <code>/api/recommendations</code>, <code>/api/notifications</code>.
+      </p>
+    </section>
+
+    <section id="dash" class="hidden">
+      <div class="row gap">
+        <section class="card col">
+          <h2>Add measurement</h2>
+
+          <div class="grid">
+            <label class="field">
+              <span>Type</span>
+              <select id="metricType">
+                <option value="GLUCOSE">Glucose</option>
+                <option value="PULSE">Pulse</option>
+                <option value="BLOOD_PRESSURE_SYSTOLIC">Blood pressure (systolic)</option>
+                <option value="BLOOD_PRESSURE_DIASTOLIC">Blood pressure (diastolic)</option>
+              </select>
+            </label>
+
+            <label class="field">
+              <span>Value</span>
+              <input id="metricValue" type="number" step="0.1" placeholder="e.g. 5.2"/>
+              <small class="muted">Demo validation: 0 &lt; value &lt; 300</small>
+            </label>
+
+            <button id="saveEntry" class="btn">Save</button>
+            <span id="saveMsg" class="msg"></span>
+          </div>
+        </section>
+
+        <section class="card col">
+          <h2>Latest analysis</h2>
+          <div id="analysisList" class="stack muted">No data yet.</div>
+        </section>
+      </div>
+
+      <div class="row gap">
+        <section class="card col">
+          <h2>Recommendations</h2>
+          <ul id="recsList" class="list"></ul>
+          <small class="muted">Demo rule-based recommendations (not medical advice).</small>
+        </section>
+
+        <section class="card col">
+          <h2>Notifications</h2>
+          <div id="notifList" class="stack muted">No notifications.</div>
+        </section>
+      </div>
+
+      <section class="card">
+        <h2>Recent entries</h2>
+        <table class="table" id="entriesTable">
+          <thead>
+            <tr>
+              <th>Time</th>
+              <th>Type</th>
+              <th>Value</th>
+              <th>Source</th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+      </section>
+    </section>
+  </main>
+
+  <script src="/app.js"></script>
+</body>
+</html>
